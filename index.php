@@ -9,7 +9,7 @@ include_once('lib/include.php');
     <div class="container">
 
             <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="well">
 	    <?php include_once('form.php');?>
             <br/>
@@ -19,7 +19,7 @@ include_once('lib/include.php');
             <br/>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
         <div class="row">
             <div class="col-md-12">
                 <div class="well">2</div>

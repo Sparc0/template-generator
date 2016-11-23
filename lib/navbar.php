@@ -22,7 +22,7 @@
 		      <span class="caret"</span></a>
 		      <ul class="dropdown-menu">
 		        <li><a href="new.php">New</a></li>
-		        <li><a href="edit.php">Edit</a></li>
+		        <li><a href="configs.php">Configs</a></li>
 		      </ul>
                     <li>
                         <a href="#">How to</a>

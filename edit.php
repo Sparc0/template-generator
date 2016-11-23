@@ -11,15 +11,20 @@ include_once('lib/include.php');
     <div class="col-md-12">
       <div class="well">
 
-<form class="form-horizontal" action="new-config.php" method="post">
+<?php
+$result = db_query("SELECT * FROM `template` WHERE id={$_POST['id']} LIMIT 1");
+while ($row = $result->fetch_assoc()) {
+?>
+
+
+<form class="form-horizontal" action="edit-config.php" method="post">
 <fieldset)>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-2 control-label" for="Name">Name</label>  
   <div class="col-md-10">
-  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-    
+  <input id="name" name="name" type="text" value="<?php echo $row[name]; ?>" placeholder="" class="form-control input-md" required="">  
   </div>
 </div>
 
@@ -28,6 +33,8 @@ include_once('lib/include.php');
   <label class="col-md-2 control-label" for="type">Type</label>
   <div class="col-md-10">
     <select id="type" name="type" class="form-control">
+<?php
+ echo "<option value=" .$row['type'] ." selected>" . $row['type'] ."</option>";?>
       <option value="extreme">Extreme</option>
       <option value="junipersw">Juniper Switch</option>
       <option value="juniperfw">Juniper Firewall</option>
@@ -40,25 +47,31 @@ include_once('lib/include.php');
 <div class="form-group">
   <label class="col-md-2 control-label" for="config">Config</label>
   <div class="col-md-10">                     
-    <textarea class="form-control" id="config" name="config" rows="20"></textarea>
+    <textarea class="form-control" id="config" name="config" rows="20"><?php echo $row[config]; ?></textarea>
   </div>
 </div>
+
+<!-- Hidden ID input -->
+<input type='hidden' name='id' value="<?php echo $row[id]; ?>">
 
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-2 control-label" for="submit"></label>
   <div class="col-md-10">
-    <button id="submit" name="submit" class="btn btn-success">Create</button>
+    <button id="submit" name="submit" class="btn btn-success">Update</button>
   </div>
 </div>
 
 </fieldset>
 </form>
+<?php
+}
+?>
+
       </div>
     </div>
   </div>
 </div>
-
 <!-- Page Content end here -->
 </body>
 </html>
