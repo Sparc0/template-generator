@@ -24,47 +24,11 @@
 </form>
 <!-- End select device form -->
 
-<!-- Extreme form start -->
-<form class="form-horizontal" name="form_extreme" id="form_extreme" style="display:none" action="generate.php" method="post">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Extreme</legend>
-
-<!-- Config input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="CONFIG">Config</label>
-  <div class="col-md-7">
-  <select id="CONFIG" name="CONFIG" class="form-control">
-  <?php
-  $result = db_query("SELECT * FROM `template` WHERE `type` LIKE '%extreme%'");
-  while ($row = $result->fetch_assoc()) {
-  echo "<option value=" . $row['name'] .">" . $row['name'] ."</option>";
-  }
-  ?>
-  </select>
-  </div>
-</div>
-<br>
-<!-- Hostname input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="SNMP_SYSNAME">Hostname</label>  
-  <div class="col-md-7">
-  <input id="SNMP_SYSNAME" name="SNMP_SYSNAME" type="text" placeholder="switch00001" class="form-control input-md" required="">
-    
-  </div>
-</div>
-
-<!-- Room Select -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="SNMP_SYSLOC_ROOM">Room</label>
-  <div class="col-md-7">
-    <select id="SNMP_SYSLOC_ROOM" name="SNMP_SYSLOC_ROOM" class="form-control">
-      <option value="Room0">Room0</option>
-      <option value="Room1">Room1</option>
-    </select>
-  </div>
-</div>
+<?php
+formStart("form_extreme");
+textInput("SNMP_SYSNAME","Hostname","serointsw00007");
+selectInput("SNMP_ROOM","Room","Room1","Room2")
+?>
 
 <!-- Row input-->
 <div class="form-group">
