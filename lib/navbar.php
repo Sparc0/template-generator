@@ -18,15 +18,23 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li class="dropdown">
-		      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources
+		      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Templates
 		      <span class="caret"</span></a>
 		      <ul class="dropdown-menu">
 		        <li><a href="new.php">New</a></li>
-		        <li><a href="configs.php">Configs</a></li>
+		        <li><a href="configs.php">List</a></li>
 		      </ul>
                     <li>
-                        <a href="#">How to</a>
-                    </li>
+                     <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
+                      <span class="caret"</span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="newform.php">New</a></li>
+                        <li><a href="listforms.php">List</a></li>
+                        <li><a href="variables.php">Variabels</a></li>
+                      </ul>
+                    <li> 
+		   </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
