@@ -28,10 +28,12 @@ include_once('lib/include.php');
   <label class="col-md-2 control-label" for="type">Type</label>
   <div class="col-md-10">
     <select id="type" name="type" class="form-control">
-      <option value="extreme">Extreme</option>
-      <option value="junipersw">Juniper Switch</option>
-      <option value="juniperfw">Juniper Firewall</option>
-      <option value="utronix">Utronix</option>
+    <?php
+      $result = db_query("SELECT * FROM `forms` ORDER BY id ASC");
+      while ($row = $result->fetch_assoc()) {
+      echo "<option value=" . $row['form-name'] .">" . $row['form-name'] ."</option>";
+      }
+    ?>
     </select>
   </div>
 </div>

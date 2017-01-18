@@ -86,8 +86,21 @@ function formStart($formname) {
 <!-- Form Name -->
 <legend>$formname</legend>
 
-<br>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="CONFIG">Config</label>
+  <div class="col-md-7">
+  <select id="CONFIG" name="CONFIG" class="form-control">
 EOF;
+  $result = db_query("SELECT * FROM `template` WHERE `type` LIKE '$formname'");
+  while ($row = $result->fetch_assoc()) {
+  echo "<option value=" . $row['name'] .">" . $row['name'] ."</option>";
+  }
+echo <<<EOF2
+  </select>
+  </div>
+</div>
+<br>
+EOF2;
 }
 
 function formEnd() {

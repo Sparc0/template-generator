@@ -18,11 +18,11 @@ include_once('lib/include.php');
 	   <th></th>
 	  </tr>
 	<?php
-	$result = db_query("SELECT * FROM `forms` ORDER BY id ASC");
+	$result = db_query("SELECT * FROM `vars`");
 	while ($row = $result->fetch_assoc()) {
 	echo "<tr>";
 	echo "<td>" .$row['form-name']."</td>";
-	echo "<td>" .$row['date']."</td>";
+	echo "<td>" .$row[date]."</td>";
 	echo "<td><form action='delete-form.php' method='POST'><input type='hidden' name='id' value='".$row["id"]."'/><input type='submit' onClick=\"return confirm('Are you sure?');\" name='submit-btn' class='btn btn-danger' value='Delete' /></form></td>";
 	echo "<td><form action='editform.php' method='POST'><input type='hidden' name='id' value='".$row["id"]."'/><input type='submit' name='submit-btn' class='btn btn-info' value='Edit' /></form></td>";
 	echo "</tr>";

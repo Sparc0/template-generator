@@ -22,9 +22,9 @@ include_once('lib/include.php');
 	$result = db_query("SELECT * FROM `template` ORDER BY id ASC");
 	while ($row = $result->fetch_assoc()) {
 	echo "<tr>";
-	echo "<td>" .$row[name]."</td>";
-	echo "<td>" .$row[type]."</td>";
-	echo "<td>" .$row[date]."</td>";
+	echo "<td>" .$row['name']."</td>";
+	echo "<td>" .$row['type']."</td>";
+	echo "<td>" .$row['date']."</td>";
 	echo "<td><form action='delete-config.php' method='POST'><input type='hidden' name='id' value='".$row["id"]."'/><input type='submit' onClick=\"return confirm('Are you sure?');\" name='submit-btn' class='btn btn-danger' value='Delete' /></form></td>";
 	echo "<td><form action='edit.php' method='POST'><input type='hidden' name='id' value='".$row["id"]."'/><input type='submit' name='submit-btn' class='btn btn-info' value='Edit' /></form></td>";
 	echo "</tr>";
