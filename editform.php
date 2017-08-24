@@ -12,12 +12,12 @@ include_once('lib/include.php');
       <div class="well">
 
 <?php
-$result = db_query("SELECT * FROM `forms` WHERE id={$_POST['id']} LIMIT 1");
+$result = db_query("SELECT * FROM `forms` WHERE id={$_GET['id']} LIMIT 1");
 while ($row = $result->fetch_assoc()) {
 ?>
 
 
-<form class="form-horizontal" action="edit-form.php" method="post">
+<form class="form-horizontal" action="editform.php" method="get">
 <fieldset)>
 
 <!-- Text input-->
@@ -32,12 +32,12 @@ while ($row = $result->fetch_assoc()) {
 <div class="form-group">
   <label class="col-md-2 control-label" for="form">Form</label>
   <div class="col-md-10">                     
-    <textarea class="form-control" id="form" name="form" rows="20"><?php echo $row[form]; ?></textarea>
+    <textarea class="form-control" id="form" name="form" rows="20"><?php echo $row['form']; ?></textarea>
   </div>
 </div>
 
 <!-- Hidden ID input -->
-<input type='hidden' name='id' value="<?php echo $row[id]; ?>">
+<input type='hidden' name='id' value="<?php echo $row['id']; ?>">
 
 <!-- Button -->
 <div class="form-group">
@@ -52,11 +52,35 @@ while ($row = $result->fetch_assoc()) {
 <?php
 }
 ?>
-
       </div>
     </div>
   </div>
 </div>
+<?php
+if(isset($_GET['submit'])) {
+	editForm();
+}
+
+function editForm() {
+$id = db_quote($_GET['id']);
+$name = db_quote($_GET['name']);
+$form = db_quote($_GET['form']);
+
+/* Remove whitespaces */
+$formshort = str_replace(' ', '', $name);
+
+
+$result = db_query("UPDATE `forms` SET `form-name` = ".$name.", `form` = ".$form.", `formshort` = ".$formshort." WHERE `forms`.`id` = ".$id."");
+if($result === false) {
+    $error = db_error();
+    // Handle failure - log the error, notify administrator, etc.
+} else {
+    // We successfully inserted a row into the database
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=listforms.php\">";
+}
+}
+?>
+
 <!-- Page Content end here -->
 </body>
 </html>

@@ -8,7 +8,7 @@ function db_connect() {
     // Try and connect to the database, if a connection has not been established yet
     if(!isset($connection)) {
          // Load configuration as an array. Use the actual location of your configuration file
-	$config = parse_ini_file('config.ini');
+	$config = parse_ini_file('config.ini.php');
         $connection = mysqli_connect($config['hostname'],$config['username'],$config['password'],$config['dbname']);
     }
 
@@ -79,8 +79,12 @@ EOF2;
 }
 
 function formStart($formname) {
+$result = db_query("SELECT * FROM `forms` WHERE `form-name` LIKE '$formname'");
+  while ($row = mysqli_fetch_assoc($result)){
+  $formshort = $row['formshort'];
+  }
 	echo <<<EOF
-<form class="form-horizontal" name="$formname" id="$formname" style="display:none" action="generate.php" method="post">
+<form class="form-horizontal" name="$formshort" id="$formshort" style="display:none" action="generate.php" method="POST">
 <fieldset>
 
 <!-- Form Name -->

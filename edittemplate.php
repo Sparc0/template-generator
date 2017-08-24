@@ -16,7 +16,7 @@ $result = db_query("SELECT * FROM `template` WHERE id={$_POST['id']} LIMIT 1");
 while ($row = $result->fetch_assoc()) {
 ?>
 
-<form class="form-horizontal" action="edit-config.php" method="post">
+<form class="form-horizontal" action="edittemplate.php" method="POST">
 <fieldset)>
 
 <!-- Text input-->
@@ -29,14 +29,14 @@ while ($row = $result->fetch_assoc()) {
 
 <!-- Select Basic -->
 <div class="form-group">
-  <label class="col-md-2 control-label" for="type">Type</label>
+  <label class="col-md-2 control-label" for="type">Device type</label>
   <div class="col-md-10">
     <select id="type" name="type" class="form-control">
-<?php echo "<option value=" .$row['type'] ." selected>" . $row['type'] ."</option>";?>
+<?php echo "<option value='" .$row['type'] ."' selected>" . $row['type'] ."</option>";?>
 <?php
-$result = db_query("SELECT * FROM `forms` ORDER BY id ASC");
+$result = db_query("SELECT * FROM `forms` ORDER BY `form-name` ASC");
 while ($row2 = $result->fetch_assoc()) {
-echo "<option value=" . $row2['form-name'] .">" . $row2['form-name'] ."</option>";
+echo "<option value='" . $row2['form-name'] ."'>" . $row2['form-name'] ."</option>";
 }
 ?>   
    </select>
@@ -72,6 +72,28 @@ echo "<option value=" . $row2['form-name'] .">" . $row2['form-name'] ."</option>
     </div>
   </div>
 </div>
+<?php
+if(isset($_POST['submit'])) {
+        editTemp();
+}
+
+function editTemp() {
+$id = db_quote($_POST['id']);
+$name = db_quote($_POST['name']);
+$type = db_quote($_POST['type']);
+$config = db_quote($_POST['config']);
+
+$result = db_query("UPDATE `template` SET `name` = ".$name.", `config` = ".$config.", `type` = ".$type." WHERE `template`.`id` = ".$id."");
+
+if($result === false) {
+    $error = db_error();
+    // Handle failure - log the error, notify administrator, etc.
+} else {
+    // We successfully inserted a row into the database
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=listtemplates.php\">";
+}
+}
+?>
 <!-- Page Content end here -->
 </body>
 </html>

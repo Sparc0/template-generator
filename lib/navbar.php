@@ -17,26 +17,20 @@
                     <li>
                         <a href="index.php">Home</a>
                     </li>
-                    <li class="dropdown">
-		      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Templates
-		      <span class="caret"</span></a>
-		      <ul class="dropdown-menu">
-		        <li><a href="new.php">New</a></li>
-		        <li><a href="configs.php">List</a></li>
-		      </ul>
                     <li>
-                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
-                      <span class="caret"</span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="newform.php">New</a></li>
-                        <li><a href="listforms.php">List</a></li>
-                        <li><a href="variables.php">Variabels</a></li>
-                      </ul>
-                    <li> 
-		   </li>
+		        <a href="listtemplates.php">Templates</a>
+                    </li>
+                    <li>
+                        <a href="listforms.php">Forms</a>
+                    </li>
+                    <li>
+                        <a href="help.php">Help</a>
+                    </li>
                 </ul>
-            </div>
+	<div class="action_buttons_header" style="text-align: right">
+        <a href="https://github.com/Sparc0/template-generator"><img src="img/github.png" alt="GitHub Link" style="width:42px;height:42px;border:0;margin:5px;" class="navbar-right"></a>
+        </div>
+	</div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->

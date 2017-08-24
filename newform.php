@@ -11,7 +11,7 @@ include_once('lib/include.php');
     <div class="col-md-12">
       <div class="well">
 
-<form class="form-horizontal" action="new-form.php" method="post">
+<form class="form-horizontal" action="newform.php" method="GET">
 <fieldset)>
 
 <!-- Text input-->
@@ -45,6 +45,30 @@ include_once('lib/include.php');
     </div>
   </div>
 </div>
+<?php
+	if(isset($_GET['submit'])) {
+	    newForm();
+	}
+
+function newForm() {
+$name = db_quote($_GET['name']);
+$form = db_quote($_GET['form']);
+
+/* Remove whitespaces */
+$formshort = str_replace(' ', '', $name);
+
+
+$result = db_query("INSERT INTO `forms` (`form-name`,`form`,`formshort`) VALUES (" . $name . "," . $form . "," . $formshort . ")");
+if($result === false) {
+    $error = db_error();
+    // Handle failure - log the error, notify administrator, etc.
+} else {
+    // We successfully inserted a row into the database
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=listforms.php\">";
+}
+}
+?>
+
 
 <!-- Page Content end here -->
 </body>

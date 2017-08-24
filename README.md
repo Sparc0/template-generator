@@ -20,4 +20,4 @@ Upload your template
 * Some design mistakes.
 * Clean the code.
 * Comment the code.
-* Make it more dynamic.
+* ~~Make it more dynamic.~~

@@ -11,7 +11,7 @@ include_once('lib/include.php');
     <div class="col-md-12">
       <div class="well">
 
-<form class="form-horizontal" action="new-config.php" method="post">
+<form class="form-horizontal" action="newtemplate.php" method="GET">
 <fieldset)>
 
 <!-- Text input-->
@@ -25,13 +25,13 @@ include_once('lib/include.php');
 
 <!-- Select Basic -->
 <div class="form-group">
-  <label class="col-md-2 control-label" for="type">Type</label>
+  <label class="col-md-2 control-label" for="type">Device type</label>
   <div class="col-md-10">
     <select id="type" name="type" class="form-control">
     <?php
-      $result = db_query("SELECT * FROM `forms` ORDER BY id ASC");
+      $result = db_query("SELECT * FROM `forms` ORDER BY `form-name` ASC");
       while ($row = $result->fetch_assoc()) {
-      echo "<option value=" . $row['form-name'] .">" . $row['form-name'] ."</option>";
+      echo "<option value='" . $row['form-name'] ."'>" . $row['form-name'] ."</option>";
       }
     ?>
     </select>
@@ -60,6 +60,27 @@ include_once('lib/include.php');
     </div>
   </div>
 </div>
+<?php
+        if(isset($_GET['submit'])) {
+            newTemp();
+        }
+
+function newTemp() {
+$name = db_quote($_GET['name']);
+$type = db_quote($_GET['type']);
+$config = db_quote($_GET['config']);
+
+$result = db_query("INSERT INTO `template` (`name`,`type`,`config`) VALUES (" . $name . "," . $type . "," . $config . ")");
+if($result === false) {
+    $error = db_error();
+    // Handle failure - log the error, notify administrator, etc.
+} else {
+    // We successfully inserted a row into the database
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=listtemplates.php\">";
+}
+}
+?>
+
 
 <!-- Page Content end here -->
 </body>
