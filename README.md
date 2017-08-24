@@ -5,16 +5,12 @@ Template generator creates a easy way to have a consistent configuration on for 
 * Upload to your webserver. 
 * Your webserver needs PHP and MySQL.
 * Import the database structure.
-* Do changes in config.ini file under /lib.
+* Do changes in config.ini.php file under lib folder.
 * ???
 * Profit
 
-##How to use.
-You have to create your own HTML form in the form.php file.
-
-If you want to add variables go into generate.php file and look for the already defined variables.
-
-Upload your template
+## How to use
+Use the help page to learn how to write your HTML form.
 
 ## Things todo
 * Some design mistakes.
