@@ -11,7 +11,7 @@ include_once('lib/include.php');
     <div class="col-md-12">
       <div class="well">
 
-<form class="form-horizontal" action="newtemplate.php" method="GET">
+<form class="form-horizontal" action="newtemplate.php" method="POST">
 <fieldset)>
 
 <!-- Text input-->
@@ -61,14 +61,14 @@ include_once('lib/include.php');
   </div>
 </div>
 <?php
-        if(isset($_GET['submit'])) {
+        if(isset($_POST['submit'])) {
             newTemp();
         }
 
 function newTemp() {
-$name = db_quote($_GET['name']);
-$type = db_quote($_GET['type']);
-$config = db_quote($_GET['config']);
+$name = db_quote($_POST['name']);
+$type = db_quote($_POST['type']);
+$config = db_quote($_POST['config']);
 
 $result = db_query("INSERT INTO `template` (`name`,`type`,`config`) VALUES (" . $name . "," . $type . "," . $config . ")");
 if($result === false) {
